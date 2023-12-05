@@ -8,14 +8,16 @@ app.get("/", async (req, res) => {
     console.log(req.query);
     const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
     
-    if (getterField.ok) { 
+    if (getterField.ok) {
       let json = await getterField.json();
       console.log(json);
       const dealUpdate = await fetch(`${b24Url}crm.timeline.comment.add?fields[ENTITY_ID]=${idDeal}&fields[ENTITY_TYPE]=deal&fields[COMMENT]=Создался документ Реализации товаров и услуг`)
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ 'result': 'true' })); 
     } else {
       console.log("Ошибка HTTP: " + getterField.status);
     }
-    res.type('html').send(html) 
+    //res.type('html').send(html) 
   }
 );
 
