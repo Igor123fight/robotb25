@@ -5,6 +5,7 @@ const b24Url = 'https://b24-le1e4k.bitrix24.by/rest/1/0xq01ul2vz6l4un9/'
 
 app.get("/", async (req, res) => {
     let idDeal = req.query.id
+    console.log(req.query);
     const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
     
     if (getterField.ok) { 
