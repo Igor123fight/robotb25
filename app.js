@@ -12,8 +12,12 @@ app.get("/", async (req, res) => {
       let json = await getterField.json();
       console.log(json);
       const dealUpdate = await fetch(`${b24Url}crm.timeline.comment.add?fields[ENTITY_ID]=${idDeal}&fields[ENTITY_TYPE]=deal&fields[COMMENT]=Создался документ Реализации товаров и услуг`)
+      let res = await dealUpdate.json()
+      console.log(res);
       res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ 'result': 'true' })); 
+      res.end(
+        JSON.stringify({ 'result': res })
+        ); 
     } else {
       console.log("Ошибка HTTP: " + getterField.status);
     }
