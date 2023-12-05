@@ -8,6 +8,10 @@ app.get("/", (req, res) => {
 }
 );
 
+app.post('endpoint', (req, res) => {
+  console.log(req.query)
+})
+
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 server.keepAliveTimeout = 120 * 1000;
