@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
 }
 );
 
-app.post('endpoint', (req, res) => {
+app.post('/endpoint', (req, res) => {
   console.log(req.query)
 })
 
