@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
+const b24Url = 'https://b24-le1e4k.bitrix24.by/rest/1/0xq01ul2vz6l4un9/'
 
 app.get("/", (req, res) => {
-  console.log(req.query);
-  res.type('html').send(html) 
-}
+    let idDeal = req.query.id
+    const getterField = fetch(`${b24url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
+    console.log(getterField);
+    res.type('html').send(html) 
+  }
 );
 
-app.post('/endpoint', (req, res) => {
-  console.log(req.query)
-})
 
 const server = app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
