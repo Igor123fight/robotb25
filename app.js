@@ -2,7 +2,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
+let id = 0
+
 app.get("/", (req, res) => {
+  console.log(req.params);
+  id = req.params.id
   res.type('html').send(html) 
 }
 );
@@ -57,7 +61,7 @@ const html = `
   </head>
   <body>
     <section>
-      Hello from Render!
+      Hello from!
     </section>
   </body>
 </html>
