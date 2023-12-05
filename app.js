@@ -6,13 +6,12 @@ const b24Url = 'https://b24-le1e4k.bitrix24.by/rest/1/0xq01ul2vz6l4un9/'
 app.get("/", async (req, res) => {
     let idDeal = req.query.id
     const getterField = fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
-    let response = await fetch(url);
-
-    if (response.ok) { 
-      let json = await response.json();
+    
+    if (getterField.ok) { 
+      let json = await getterField.json();
       console.log(json);
     } else {
-      alert("Ошибка HTTP: " + response.status);
+      alert("Ошибка HTTP: " + getterField.status);
     }
     res.type('html').send(html) 
   }
