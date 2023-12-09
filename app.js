@@ -9,6 +9,8 @@ app.get("/", async (req, res) => {
   }
   
   let idDeal = req.query.id
+  res.json(idDeal)
+  /*
   const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
     
     if (getterField.ok) {
@@ -18,7 +20,7 @@ app.get("/", async (req, res) => {
       let result = await dealUpdate.json()
       console.log(res);
       res.json(result)
-    }
+    }*/
   }
 );
 
