@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
-const b24Url = 'https://b24-le1e4k.bitrix24.by/rest/1/0xq01ul2vz6l4un9/'
+const b24Url = 'https://b24-nqeb8x.bitrix24.ru/rest/1/j1h4rdo092w6cae1/'
 
 app.get("/", async (req, res) => {
-    let idDeal = req.query.id
-    console.log(req.query);
-    const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
+  if (!req.query.id) {
+    return res.status(400).json({ error: 'ID is required in the request body' });
+  }
+  
+  let idDeal = req.query.id
+  const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
     
     if (getterField.ok) {
       let json = await getterField.json();
@@ -14,14 +17,7 @@ app.get("/", async (req, res) => {
       const dealUpdate = await fetch(`${b24Url}crm.timeline.comment.add?fields[ENTITY_ID]=${idDeal}&fields[ENTITY_TYPE]=deal&fields[COMMENT]=Создался документ Реализации товаров и услуг`)
       let res = await dealUpdate.json()
       console.log(res);
-      res.setHeader('Content-Type', 'application/json');
-      res.end(
-        JSON.stringify({ 'result': res })
-        ); 
-    } else {
-      console.log("Ошибка HTTP: " + getterField.status);
     }
-    //res.type('html').send(html) 
   }
 );
 
