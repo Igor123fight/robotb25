@@ -12,8 +12,9 @@ app.get("/", async (req, res) => {
 
     const getterField = await fetch(`${b24Url}calendar.resource.booking.list?filter[resourceIdList]=${idDeal}`)
     let getterFieldJson = await getterField.json();
-    const dealUpdate = await fetch(`${b24Url}crm.timeline.comment.add?fields[ENTITY_ID]=${idDeal}&fields[ENTITY_TYPE]=deal&fields[COMMENT]=${getterFieldJson}`)
+    const dealUpdate = await fetch(`${b24Url}crm.timeline.comment.add?fields[ENTITY_ID]=${idDeal}&fields[ENTITY_TYPE]=deal&fields[COMMENT]=${getterFieldJson.result}`)
     let result = await dealUpdate.json()
+    console.log(result);
     res.json(result)
   }
 );
